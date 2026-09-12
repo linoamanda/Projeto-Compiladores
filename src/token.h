@@ -3,18 +3,15 @@
 
 typedef enum
 {
-    PLUS,
-    MINUS,
-    TIMES,
-    OVER,
-    SEMICOLON,
-    COMMA,
-    LPAREN,
-    RPAREN,
-    LBRACKET,
-    RBRACKET,
-    LBRACE,
-    RBRACE
+    ID,
+    ELSE,
+    IF,
+    INT,
+    RETURN,
+    VOID,
+    WHILE
 } TokenType;
+
+TokenType verificaToken(char *lexema);
 
 #endif
