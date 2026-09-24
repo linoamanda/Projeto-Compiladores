@@ -1,30 +1,77 @@
+/****************************************************/
+/* File: tiny.l                                     */
+/* Lex specification for TINY                       */
+/* Compiler Construction: Principles and Practice   */
+/* Kenneth C. Louden                                */
+/****************************************************/
+
+
+%option noyywrap
 %{
-#include <stdio.h>
+#include "globals.h"
+#include "util.h"
+#include "scanner.h"
+/* lexeme of identifier or reserved word */
+char tokenString[MAXTOKENLEN+1];
 %}
 
-%%
-
-"if"        { printf("IF\n"); }
-
-[0-9]+      { printf("NUM: %s\n", yytext); }
-
-[a-zA-Z]+   { printf("ID: %s\n", yytext); }
-
-"+"         { printf("PLUS\n"); }
-
-[ \t\n]+    { /* ignora espaços */ }
-
-.           { printf("CARACTERE: %s\n", yytext); }
+digit       [0-9]
+number      {digit}+
+letter      [a-zA-Z]
+identifier  {letter}+
+newline     \n
+whitespace  [ \t]+
 
 %%
 
-int yywrap(void)
-{
-    return 1;
+"if"            {return IF;}
+"then"          {return THEN;}
+"else"          {return ELSE;}
+"end"           {return END;}
+"repeat"        {return REPEAT;}
+"until"         {return UNTIL;}
+"read"          {return READ;}
+"write"         {return WRITE;}
+":="            {return ASSIGN;}
+"="             {return EQ;}
+"<"             {return LT;}
+"+"             {return PLUS;}
+"-"             {return MINUS;}
+"*"             {return TIMES;}
+"/"             {return OVER;}
+"("             {return LPAREN;}
+")"             {return RPAREN;}
+";"             {return SEMI;}
+{number}        {return NUM;}
+{identifier}    {return ID;}
+{newline}       {lineno++;}
+{whitespace}    {/* skip whitespace */}
+"{"             { char c;
+                  do
+                  { c = input();
+                    if (c == EOF) break;
+                    if (c == '\n') lineno++;
+                  } while (c != '}');
+                }
+.               {return ERROR;}
+
+%%
+
+TokenType getToken(void)
+{ static int firstTime = TRUE;
+  TokenType currentToken;
+  if (firstTime)
+  { firstTime = FALSE;
+    lineno++;
+    yyin = source;
+    yyout = target;
+  }
+  currentToken = yylex();
+  strncpy(tokenString,yytext,MAXTOKENLEN);
+  if (TraceScan) {
+    fprintf(target,"\t%d: ",lineno);
+    printToken(currentToken,tokenString);
+  }
+  return currentToken;
 }
 
-int main(void)
-{
-    yylex();
-    return 0;
-}
