@@ -1,5 +1,0 @@
-if x < 10 then
-    write x;
-    @
-    #
-end

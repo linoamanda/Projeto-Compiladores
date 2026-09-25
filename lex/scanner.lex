@@ -1,8 +1,6 @@
 /****************************************************/
-/* File: tiny.l                                     */
-/* Lex specification for TINY                       */
-/* Compiler Construction: Principles and Practice   */
-/* Kenneth C. Louden                                */
+/* File: scanner.lex                                */
+/* Lex specification for C--                        */
 /****************************************************/
 
 
@@ -25,35 +23,56 @@ whitespace  [ \t]+
 %%
 
 "if"            {return IF;}
-"then"          {return THEN;}
 "else"          {return ELSE;}
-"end"           {return END;}
-"repeat"        {return REPEAT;}
-"until"         {return UNTIL;}
-"read"          {return READ;}
-"write"         {return WRITE;}
-":="            {return ASSIGN;}
-"="             {return EQ;}
+"int"           {return INT;}
+"return"        {return RETURN;}
+"void"          {return VOID;}
+"while"         {return WHILE;}
+"=="            {return EQ;}
+"="             {return ASSIGN;}
+"<="            {return LE;}
 "<"             {return LT;}
+">="            {return GE;}
+">"             {return GT;}
+"!="            {return NE;}
 "+"             {return PLUS;}
 "-"             {return MINUS;}
 "*"             {return TIMES;}
-"/"             {return OVER;}
 "("             {return LPAREN;}
 ")"             {return RPAREN;}
 ";"             {return SEMI;}
+","             {return COMMA;}
+"["             {return LBRACK;}
+"]"             {return RBRACK;}
 {number}        {return NUM;}
 {identifier}    {return ID;}
 {newline}       {lineno++;}
 {whitespace}    {/* skip whitespace */}
-"{"             { char c;
+              "/*" {
+                  char c;
+                  char anterior = 0;
+
                   do
-                  { c = input();
-                    if (c == EOF) break;
-                    if (c == '\n') lineno++;
-                  } while (c != '}');
-                }
-.               {return ERROR;}
+                  {
+                      c = input();
+
+                      if (c == EOF)
+                          break;
+
+                      if (c == '\n')
+                          lineno++;
+
+                      if (anterior == '*' && c == '/')
+                          break;
+
+                      anterior = c;
+
+                  } while (1);
+                              }
+ "/"             {return OVER;}
+"{"              {return LBRACE;}
+"}"              {return RBRACE;}
+.                {return ERROR;}
 
 %%
 
@@ -69,7 +88,7 @@ TokenType getToken(void)
   currentToken = yylex();
   strncpy(tokenString,yytext,MAXTOKENLEN);
   if (TraceScan) {
-    fprintf(target,"\t%d: ",lineno);
+   // fprintf(target,"\t%d: ",lineno);
     printToken(currentToken,tokenString);
   }
   return currentToken;

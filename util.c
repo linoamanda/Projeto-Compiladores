@@ -1,9 +1,7 @@
 /****************************************************/
 /* File: util.c                                     */
 /* Utility function implementation                  */
-/* for the TINY compiler                            */
-/* Compiler Construction: Principles and Practice   */
-/* Kenneth C. Louden                                */
+/* for the C-- compiler                            */
 /****************************************************/
 
 #include "globals.h"
@@ -15,26 +13,30 @@
 void printToken( TokenType token, const char* tokenString )
 { switch (token)
   { case IF:
-    case THEN:
     case ELSE:
-    case END:
-    case REPEAT:
-    case UNTIL:
-    case READ:
-    case WRITE:
-      fprintf(target,
+    case INT:
+    case RETURN:
+    case VOID:
+    case WHILE:
+     fprintf(target,
          "reserved word: %s\n",tokenString);
       break;
-    case ASSIGN: fprintf(target,":=\n"); break;
+    case EQ: fprintf(target,"==\n"); break;
+    case ASSIGN: fprintf(target,"=\n"); break;
     case LT: fprintf(target,"<\n"); break;
-    case EQ: fprintf(target,"=\n"); break;
-    case LPAREN: fprintf(target,"(\n"); break;
-    case RPAREN: fprintf(target,")\n"); break;
-    case SEMI: fprintf(target,";\n"); break;
+    case LE: fprintf(target,"<=\n"); break;
+    case GE: fprintf(target,">=n"); break;
+    case GT: fprintf(target,">\n"); break;
+    case NE: fprintf(target,"!=\n"); break;
     case PLUS: fprintf(target,"+\n"); break;
     case MINUS: fprintf(target,"-\n"); break;
     case TIMES: fprintf(target,"*\n"); break;
-    case OVER: fprintf(target,"/\n"); break;
+    case LPAREN: fprintf(target,"(\n"); break;
+    case RPAREN: fprintf(target,")\n"); break;
+    case SEMI: fprintf(target,";\n"); break;
+    case COMMA: fprintf(target,",\n"); break;
+    case LBRACK: fprintf(target,"[\n"); break;
+    case RBRACK: fprintf(target,"]\n"); break;
     case ENDFILE: fprintf(target,"EOF\n"); break;
     case NUM:
       fprintf(target,
@@ -44,9 +46,12 @@ void printToken( TokenType token, const char* tokenString )
       fprintf(target,
           "ID, name= %s\n",tokenString);
       break;
+    case OVER: fprintf(target,"/\n"); break;
+    case LBRACE: fprintf(target,"{\n"); break;
+    case RBRACE: fprintf(target,"}\n"); break;
     case ERROR:
     fprintf(target,
-        "ERROR: símbolo inválido \"%s\"\n", tokenString);
+        "ERROR: simbolo invalido \"%s\" na linha %d\n", tokenString, lineno);
     break;
     default: /* should never happen */
       fprintf(target,"Unknown token: %d\n",token);

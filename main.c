@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
     if (strchr(pgm, '.') == NULL)
     {
-        strcat(pgm, ".tny");
+        strcat(pgm, ".c--");
     }
 
     source = fopen(pgm, "r");
