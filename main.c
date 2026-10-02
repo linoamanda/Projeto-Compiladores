@@ -32,11 +32,18 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    target = stdout;
+    //target = stdout;
+    target = fopen("saida.txt", "w");
+    if (target == NULL)
+    {
+        fprintf(stderr, "Arquivo saida.txt não pode ser criado.\n");
+        exit(1);
+    }
 
     while (getToken() != ENDFILE);
 
     fclose(source);
+    fclose(target); 
 
     return 0;
 }

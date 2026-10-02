@@ -477,19 +477,105 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "scanner.lex"
+#line 1 "main.l"
 /****************************************************/
 /* File: scanner.lex                                */
 /* Lex specification for C--                        */
 /****************************************************/
-#line 9 "scanner.lex"
-#include "globals.h"
-#include "util.h"
-#include "scanner.h"
+#line 9 "main.l"
+/* ---------- conteúdo de globals.h ---------- */
+#ifndef GLOBALS_H
+#define GLOBALS_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+
+
+typedef enum
+{
+    ENDFILE = 0,
+    ERROR   = 1,
+
+    IF      = 2,
+    ELSE    = 3,
+    INT     = 4,
+    RETURN  = 5,
+    VOID    = 6,
+    WHILE   = 7,
+
+    ID      = 8,
+    NUM     = 9,
+
+    ASSIGN  = 10,
+    EQ      = 11,
+    LE      = 12,
+    GE      = 13,
+    GT      = 14,
+    NE      = 15,
+    LT      = 16,
+    PLUS    = 17,
+    MINUS   = 18,
+    TIMES   = 19,
+    OVER    = 20,
+    LPAREN  = 21,
+    RPAREN  = 22,
+    SEMI    = 23,
+    COMMA   = 24,
+    LBRACK  = 25,
+    RBRACK  = 26,
+    LBRACE  = 27,
+    RBRACE  = 28
+
+} TokenType;
+
+extern FILE *source;
+extern FILE *target;
+extern int lineno;
+extern int TraceScan;
+
+#endif
+
+/* ---------- conteúdo de util.h ---------- */
+#ifndef UTIL_H
+#define UTIL_H
+
+void printToken(TokenType, const char *);
+
+#endif
+
+/* ---------- conteúdo de scanner.h ---------- */
+#ifndef SCANNER_H
+#define SCANNER_H
+
+#define MAXTOKENLEN 40
+
+extern char tokenString[MAXTOKENLEN + 1];
+
+TokenType getToken(void);
+
+#endif
+
+/* ---------- variáveis globais (antigo main.c) ---------- */
+FILE *source;
+FILE *target;
+
+int lineno = 0;
+int TraceScan = 1;
+
 /* lexeme of identifier or reserved word */
 char tokenString[MAXTOKENLEN+1];
-#line 491 "lex.yy.c"
-#line 492 "lex.yy.c"
+#line 577 "lex.yy.c"
+#line 578 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -500,7 +586,7 @@ char tokenString[MAXTOKENLEN+1];
  */
 #include <unistd.h>
 #endif
-    
+
 #ifndef YY_EXTRA_TYPE
 #define YY_EXTRA_TYPE void *
 #endif
@@ -706,10 +792,10 @@ YY_DECL
 		}
 
 	{
-#line 23 "scanner.lex"
+#line 109 "main.l"
 
 
-#line 712 "lex.yy.c"
+#line 798 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -768,186 +854,179 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 25 "scanner.lex"
+#line 111 "main.l"
 {return IF;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 26 "scanner.lex"
+#line 112 "main.l"
 {return ELSE;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 27 "scanner.lex"
+#line 113 "main.l"
 {return INT;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 28 "scanner.lex"
+#line 114 "main.l"
 {return RETURN;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 29 "scanner.lex"
+#line 115 "main.l"
 {return VOID;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 30 "scanner.lex"
+#line 116 "main.l"
 {return WHILE;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 31 "scanner.lex"
+#line 117 "main.l"
 {return EQ;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 32 "scanner.lex"
+#line 118 "main.l"
 {return ASSIGN;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "scanner.lex"
+#line 119 "main.l"
 {return LE;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 34 "scanner.lex"
+#line 120 "main.l"
 {return LT;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 35 "scanner.lex"
+#line 121 "main.l"
 {return GE;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 36 "scanner.lex"
+#line 122 "main.l"
 {return GT;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 37 "scanner.lex"
+#line 123 "main.l"
 {return NE;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 38 "scanner.lex"
+#line 124 "main.l"
 {return PLUS;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 39 "scanner.lex"
+#line 125 "main.l"
 {return MINUS;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 40 "scanner.lex"
+#line 126 "main.l"
 {return TIMES;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 41 "scanner.lex"
+#line 127 "main.l"
 {return LPAREN;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 42 "scanner.lex"
+#line 128 "main.l"
 {return RPAREN;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 43 "scanner.lex"
+#line 129 "main.l"
 {return SEMI;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 44 "scanner.lex"
+#line 130 "main.l"
 {return COMMA;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 45 "scanner.lex"
+#line 131 "main.l"
 {return LBRACK;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 46 "scanner.lex"
+#line 132 "main.l"
 {return RBRACK;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 47 "scanner.lex"
+#line 133 "main.l"
 {return NUM;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 48 "scanner.lex"
+#line 134 "main.l"
 {return ID;}
 	YY_BREAK
 case 25:
 /* rule 25 can match eol */
 YY_RULE_SETUP
-#line 49 "scanner.lex"
+#line 135 "main.l"
 {lineno++;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 50 "scanner.lex"
+#line 136 "main.l"
 {/* skip whitespace */}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 51 "scanner.lex"
+#line 137 "main.l"
 {
-                  char c;
-                  char anterior = 0;
-
-                  do
-                  {
-                      c = input();
-
-                      if (c == EOF)
-                          break;
-
-                      if (c == '\n')
-                          lineno++;
-
-                      if (anterior == '*' && c == '/')
-                          break;
-
-                      anterior = c;
-
-                  } while (1);
-                              }
+                    char c;
+                    while (1) {
+                        c = input();
+                        if (c == 0 || c == EOF) break;
+                        if (c == '\n') lineno++;
+                        if (c == '*') {
+                            while ((c = input()) == '*');
+                            if (c == '/') break;
+                            if (c == '\n') lineno++;
+                            if (c == 0 || c == EOF) break;
+                        }
+                    }
+                }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 72 "scanner.lex"
+#line 151 "main.l"
 {return OVER;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 73 "scanner.lex"
+#line 152 "main.l"
 {return LBRACE;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 74 "scanner.lex"
+#line 153 "main.l"
 {return RBRACE;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 75 "scanner.lex"
+#line 154 "main.l"
 {return ERROR;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 77 "scanner.lex"
+#line 156 "main.l"
 ECHO;
 	YY_BREAK
-#line 950 "lex.yy.c"
+#line 1029 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1952,7 +2031,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 77 "scanner.lex"
+#line 156 "main.l"
 
 
 TokenType getToken(void)
@@ -1965,12 +2044,129 @@ TokenType getToken(void)
     yyout = target;
   }
   currentToken = yylex();
+
+  if (currentToken == 0) {
+    currentToken = ENDFILE;
+  }
   strncpy(tokenString,yytext,MAXTOKENLEN);
   if (TraceScan) {
    // fprintf(target,"\t%d: ",lineno);
     printToken(currentToken,tokenString);
   }
+  // Força a gravação imediata no arquivo a cada token encontrado:
+    // Força a gravação imediata no arquivo a cada token encontrado:
+  if (target) fflush(target);
+
+  if (currentToken == ERROR)
+  {
+    fprintf(stderr, "ERRO LEXICO: simbolo invalido \"%s\" na linha %d\n",
+            tokenString, lineno);
+    fclose(source);
+    fclose(target);
+    exit(1);
+  }
+
   return currentToken;
 }
 
+/****************************************************/
+/* File: util.c                                     */
+/* Utility function implementation                  */
+/* for the C-- compiler                            */
+/****************************************************/
 
+/* Procedure printToken prints a token 
+ * and its lexeme to the listing file
+ */
+void printToken( TokenType token, const char* tokenString )
+{ switch (token)
+  { case IF:
+    case ELSE:
+    case INT:
+    case RETURN:
+    case VOID:
+    case WHILE:
+     fprintf(target,
+         "reserved word %s\n",tokenString);
+      break;
+    case EQ: fprintf(target,"EQ ==\n"); break;
+    case ASSIGN: fprintf(target, "ASSIGN =\n"); break;
+    case LT: fprintf(target,"LT <\n"); break;
+    case LE: fprintf(target," LE <=\n"); break;
+    case GE: fprintf(target," GE >=n"); break;
+    case GT: fprintf(target,"GT >\n"); break;
+    case NE: fprintf(target,"NE !=\n"); break;
+    case PLUS: fprintf(target,"PLUS +\n"); break;
+    case MINUS: fprintf(target,"MINUS -\n"); break;
+    case TIMES: fprintf(target,"TIMES *\n"); break;
+    case LPAREN: fprintf(target,"LPAREN (\n"); break;
+    case RPAREN: fprintf(target,"RPAREN )\n"); break;
+    case SEMI: fprintf(target," SEMI ;\n"); break;
+    case COMMA: fprintf(target,"COMMA ,\n"); break;
+    case LBRACK: fprintf(target,"LBRACK [\n"); break;
+    case RBRACK: fprintf(target,"RBRACK ]\n"); break;
+    case ENDFILE: fprintf(target,"EOF\n"); break;
+    case NUM:
+      fprintf(target,
+          "NUM %s\n",tokenString);
+      break;
+    case ID:
+      fprintf(target,
+          "ID %s\n",tokenString);
+      break;
+    case OVER: fprintf(target,"OVER/\n"); break;
+    case LBRACE: fprintf(target," LBRACE {\n"); break;
+    case RBRACE: fprintf(target," RBRACE }\n"); break;
+    case ERROR:
+    fprintf(target,
+        "ERROR: simbolo invalido \"%s\" na linha %d\n", tokenString, lineno);
+    break;
+    default: /* should never happen */
+      fprintf(target,"Unknown token: %d\n",token);
+  }
+}
+
+/****************************************************/
+/* main (antigo main.c)                             */
+/****************************************************/
+
+int main(int argc, char *argv[])
+{
+    char pgm[120];
+
+    if (argc != 2)
+    {
+        fprintf(stderr, "Uso: %s <arquivo de entrada>\n", argv[0]);
+        return 1;
+    }
+
+    strcpy(pgm, argv[1]);
+
+    if (strchr(pgm, '.') == NULL)
+    {
+        strcat(pgm, ".c--");
+    }
+
+    source = fopen(pgm, "r");
+
+    if (source == NULL)
+    {
+        fprintf(stderr, "Arquivo %s não encontrado.\n", pgm);
+        exit(1);
+    }
+
+    //target = stdout;
+    target = fopen("saida.txt", "w");
+    if (target == NULL)
+    {
+        fprintf(stderr, "Arquivo saida.txt não pode ser criado.\n");
+        exit(1);
+    }
+
+    while (getToken() != ENDFILE);
+
+    fclose(source);
+    fclose(target); 
+
+    return 0;
+}

@@ -48,27 +48,20 @@ whitespace  [ \t]+
 {identifier}    {return ID;}
 {newline}       {lineno++;}
 {whitespace}    {/* skip whitespace */}
-              "/*" {
-                  char c;
-                  char anterior = 0;
-
-                  do
-                  {
-                      c = input();
-
-                      if (c == EOF)
-                          break;
-
-                      if (c == '\n')
-                          lineno++;
-
-                      if (anterior == '*' && c == '/')
-                          break;
-
-                      anterior = c;
-
-                  } while (1);
-                              }
+             "/*" {
+                    char c;
+                    while (1) {
+                        c = input();
+                        if (c == 0 || c == EOF) break;
+                        if (c == '\n') lineno++;
+                        if (c == '*') {
+                            while ((c = input()) == '*');
+                            if (c == '/') break;
+                            if (c == '\n') lineno++;
+                            if (c == 0 || c == EOF) break;
+                        }
+                    }
+                }
  "/"             {return OVER;}
 "{"              {return LBRACE;}
 "}"              {return RBRACE;}
@@ -86,11 +79,29 @@ TokenType getToken(void)
     yyout = target;
   }
   currentToken = yylex();
+
+  if (currentToken == 0) {
+    currentToken = ENDFILE;
+  }
   strncpy(tokenString,yytext,MAXTOKENLEN);
   if (TraceScan) {
    // fprintf(target,"\t%d: ",lineno);
     printToken(currentToken,tokenString);
   }
+  // Força a gravação imediata no arquivo a cada token encontrado:
+   // Força a gravação imediata no arquivo a cada token encontrado:
+  if (target) fflush(target);
+
+  if (currentToken == ERROR)
+  {
+    fprintf(stderr, "ERRO LEXICO: simbolo invalido \"%s\" na linha %d\n",
+            tokenString, lineno);
+    fclose(source);
+    fclose(target);
+    exit(1);
+  }
+
   return currentToken;
 }
+ 
 
