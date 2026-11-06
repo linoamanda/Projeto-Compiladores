@@ -182,9 +182,7 @@ TokenType getToken(void)
   {
     fprintf(stderr, "ERRO LEXICO: simbolo invalido \"%s\" na linha %d\n",
             tokenString, lineno);
-    fclose(source);
-    fclose(target);
-    exit(1);
+   
   }
 
   return currentToken;
@@ -208,36 +206,36 @@ void printToken( TokenType token, const char* tokenString )
     case VOID:
     case WHILE:
      fprintf(target,
-         "reserved word %s\n",tokenString);
+         " %s ",tokenString);
       break;
-    case EQ: fprintf(target,"EQ ==\n"); break;
-    case ASSIGN: fprintf(target, "ASSIGN =\n"); break;
-    case LT: fprintf(target,"LT <\n"); break;
-    case LE: fprintf(target," LE <=\n"); break;
-    case GE: fprintf(target," GE >=n"); break;
-    case GT: fprintf(target,"GT >\n"); break;
-    case NE: fprintf(target,"NE !=\n"); break;
-    case PLUS: fprintf(target,"PLUS +\n"); break;
-    case MINUS: fprintf(target,"MINUS -\n"); break;
-    case TIMES: fprintf(target,"TIMES *\n"); break;
-    case LPAREN: fprintf(target,"LPAREN (\n"); break;
-    case RPAREN: fprintf(target,"RPAREN )\n"); break;
-    case SEMI: fprintf(target," SEMI ;\n"); break;
-    case COMMA: fprintf(target,"COMMA ,\n"); break;
-    case LBRACK: fprintf(target,"LBRACK [\n"); break;
-    case RBRACK: fprintf(target,"RBRACK ]\n"); break;
+    case EQ: fprintf(target," == "); break;
+    case ASSIGN: fprintf(target, " = "); break;
+    case LT: fprintf(target," < "); break;
+    case LE: fprintf(target,"  <="); break;
+    case GE: fprintf(target,"  >="); break;
+    case GT: fprintf(target," > "); break;
+    case NE: fprintf(target," != "); break;
+    case PLUS: fprintf(target," + "); break;
+    case MINUS: fprintf(target," - "); break;
+    case TIMES: fprintf(target," * "); break;
+    case LPAREN: fprintf(target," ( "); break;
+    case RPAREN: fprintf(target," ) "); break;
+    case SEMI: fprintf(target,"  ; "); break;
+    case COMMA: fprintf(target," , "); break;
+    case LBRACK: fprintf(target," [ "); break;
+    case RBRACK: fprintf(target," ] "); break;
     case ENDFILE: fprintf(target,"EOF\n"); break;
     case NUM:
       fprintf(target,
-          "NUM %s\n",tokenString);
+          "NUM %s ",tokenString);
       break;
     case ID:
       fprintf(target,
-          "ID %s\n",tokenString);
+          "ID %s ",tokenString);
       break;
     case OVER: fprintf(target,"OVER/\n"); break;
-    case LBRACE: fprintf(target," LBRACE {\n"); break;
-    case RBRACE: fprintf(target," RBRACE }\n"); break;
+    case LBRACE: fprintf(target," { \n"); break;
+    case RBRACE: fprintf(target,"  }\n"); break;
     case ERROR:
     fprintf(target,
         "ERROR: simbolo invalido \"%s\" na linha %d\n", tokenString, lineno);

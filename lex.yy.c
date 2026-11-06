@@ -354,8 +354,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 32
-#define YY_END_OF_BUFFER 33
+#define YY_NUM_RULES 11
+#define YY_END_OF_BUFFER 12
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -363,14 +363,10 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[57] =
+static const flex_int16_t yy_accept[17] =
     {   0,
-        0,    0,   33,   31,   26,   25,   31,   17,   18,   16,
-       14,   20,   15,   28,   23,   19,   10,    8,   12,   24,
-       21,   22,   24,   24,   24,   24,   24,   29,   30,   26,
-       13,   27,   23,    9,    7,   11,   24,   24,    1,   24,
-       24,   24,   24,   24,    3,   24,   24,   24,    2,   24,
-        5,   24,   24,    6,    4,    0
+        0,    0,   12,   10,    9,    8,    5,    6,    3,    1,
+        2,    4,    7,    9,    7,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -378,17 +374,17 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    4,    1,    1,    1,    1,    1,    1,    5,
-        6,    7,    8,    9,   10,    1,   11,   12,   12,   12,
-       12,   12,   12,   12,   12,   12,   12,    1,   13,   14,
-       15,   16,    1,    1,   17,   17,   17,   17,   17,   17,
-       17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
-       17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
-       18,    1,   19,    1,    1,    1,   17,   17,   17,   20,
+        1,    2,    1,    1,    1,    1,    1,    1,    1,    4,
+        5,    6,    7,    1,    8,    1,    9,   10,   10,   10,
+       10,   10,   10,   10,   10,   10,   10,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 
-       21,   22,   17,   23,   24,   17,   17,   25,   17,   26,
-       27,   17,   17,   28,   29,   30,   31,   32,   33,   17,
-       17,   17,   34,    1,   35,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -405,62 +401,35 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[36] =
+static const YY_CHAR yy_meta[11] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    2,    1,    1,    2,
-        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    1,    1
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[58] =
+static const flex_int16_t yy_base[17] =
     {   0,
-        0,    0,   64,   65,   61,   65,   47,   65,   65,   65,
-       65,   65,   65,   54,   48,   65,   44,   43,   42,    0,
-       65,   65,   31,   14,   34,   27,   30,   65,   65,   50,
-       65,   65,   39,   65,   65,   65,    0,   21,    0,   19,
-       18,   23,   22,   24,    0,   13,   23,   17,    0,   13,
-        0,   18,   12,    0,    0,   65,   35
+        0,    0,   15,   16,   12,   16,   16,   16,   16,   16,
+       16,   16,    3,   10,    1,   16
     } ;
 
-static const flex_int16_t yy_def[58] =
+static const flex_int16_t yy_def[17] =
     {   0,
-       56,    1,   56,   56,   56,   56,   56,   56,   56,   56,
-       56,   56,   56,   56,   56,   56,   56,   56,   56,   57,
-       56,   56,   57,   57,   57,   57,   57,   56,   56,   56,
-       56,   56,   56,   56,   56,   56,   57,   57,   57,   57,
-       57,   57,   57,   57,   57,   57,   57,   57,   57,   57,
-       57,   57,   57,   57,   57,    0,   56
+       16,    1,   16,   16,   16,   16,   16,   16,   16,   16,
+       16,   16,   16,   16,   16,    0
     } ;
 
-static const flex_int16_t yy_nxt[101] =
+static const flex_int16_t yy_nxt[27] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
-       14,   15,   16,   17,   18,   19,   20,   21,   22,   20,
-       23,   20,   20,   24,   20,   20,   20,   25,   20,   20,
-       20,   26,   27,   28,   29,   39,   37,   55,   54,   40,
-       53,   52,   51,   50,   49,   48,   47,   46,   45,   44,
-       33,   30,   43,   42,   41,   38,   36,   35,   34,   33,
-       32,   31,   30,   56,    3,   56,   56,   56,   56,   56,
-       56,   56,   56,   56,   56,   56,   56,   56,   56,   56,
-       56,   56,   56,   56,   56,   56,   56,   56,   56,   56,
-       56,   56,   56,   56,   56,   56,   56,   56,   56,   56
-
+       15,   14,   15,   14,   16,    3,   16,   16,   16,   16,
+       16,   16,   16,   16,   16,   16
     } ;
 
-static const flex_int16_t yy_chk[101] =
+static const flex_int16_t yy_chk[27] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,   24,   57,   53,   52,   24,
-       50,   48,   47,   46,   44,   43,   42,   41,   40,   38,
-       33,   30,   27,   26,   25,   23,   19,   18,   17,   15,
-       14,    7,    5,    3,   56,   56,   56,   56,   56,   56,
-       56,   56,   56,   56,   56,   56,   56,   56,   56,   56,
-       56,   56,   56,   56,   56,   56,   56,   56,   56,   56,
-       56,   56,   56,   56,   56,   56,   56,   56,   56,   56
-
+       15,   14,   13,    5,    3,   16,   16,   16,   16,   16,
+       16,   16,   16,   16,   16,   16
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -477,16 +446,13 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "main.l"
+#line 1 "g2.l"
 /****************************************************/
 /* File: scanner.lex                                */
-/* Lex specification for C--                        */
+/* Analisador Léxico + Parser Descendente Recursivo */
+/* Gramática G2                                     */
 /****************************************************/
-#line 9 "main.l"
-/* ---------- conteúdo de globals.h ---------- */
-#ifndef GLOBALS_H
-#define GLOBALS_H
-
+#line 9 "g2.l"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -499,83 +465,44 @@ char *yytext;
 #define TRUE 1
 #endif
 
-
-
+/* Enumeração dos Tokens para a Gramática G2 */
 typedef enum
 {
     ENDFILE = 0,
     ERROR   = 1,
-
-    IF      = 2,
-    ELSE    = 3,
-    INT     = 4,
-    RETURN  = 5,
-    VOID    = 6,
-    WHILE   = 7,
-
-    ID      = 8,
-    NUM     = 9,
-
-    ASSIGN  = 10,
-    EQ      = 11,
-    LE      = 12,
-    GE      = 13,
-    GT      = 14,
-    NE      = 15,
-    LT      = 16,
-    PLUS    = 17,
-    MINUS   = 18,
-    TIMES   = 19,
-    OVER    = 20,
-    LPAREN  = 21,
-    RPAREN  = 22,
-    SEMI    = 23,
-    COMMA   = 24,
-    LBRACK  = 25,
-    RBRACK  = 26,
-    LBRACE  = 27,
-    RBRACE  = 28
-
+    NUM     = 2,
+    PLUS    = 3,
+    MINUS   = 4,
+    TIMES   = 5,
+    OVER    = 6,
+    LPAREN  = 7,
+    RPAREN  = 8
 } TokenType;
-
-extern FILE *source;
-extern FILE *target;
-extern int lineno;
-extern int TraceScan;
-
-#endif
-
-/* ---------- conteúdo de util.h ---------- */
-#ifndef UTIL_H
-#define UTIL_H
-
-void printToken(TokenType, const char *);
-
-#endif
-
-/* ---------- conteúdo de scanner.h ---------- */
-#ifndef SCANNER_H
-#define SCANNER_H
 
 #define MAXTOKENLEN 40
 
-extern char tokenString[MAXTOKENLEN + 1];
-
-TokenType getToken(void);
-
-#endif
-
-/* ---------- variáveis globais (antigo main.c) ---------- */
+/* Variáveis Globais */
 FILE *source;
 FILE *target;
-
 int lineno = 0;
-int TraceScan = 1;
+int TraceScan = 0; /* Define como 1 se quiseres ver a impressão dos tokens */
+char tokenString[MAXTOKENLEN + 1];
 
-/* lexeme of identifier or reserved word */
-char tokenString[MAXTOKENLEN+1];
-#line 577 "lex.yy.c"
-#line 578 "lex.yy.c"
+TokenType currentToken;
+
+/* Protótipos das Funções Léxicas */
+TokenType getToken(void);
+void printToken(TokenType, const char *);
+
+/* Protótipos do Parser Descendente Recursivo */
+void exp_syntax(void);
+void termo(void);
+void fator(void);
+void match(TokenType expected);
+void syntaxError(const char *message);
+
+#line 504 "lex.yy.c"
+#line 505 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -792,10 +719,10 @@ YY_DECL
 		}
 
 	{
-#line 109 "main.l"
+#line 64 "g2.l"
 
 
-#line 798 "lex.yy.c"
+#line 725 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -822,13 +749,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 57 )
+				if ( yy_current_state >= 17 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 65 );
+		while ( yy_base[yy_current_state] != 16 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -854,179 +781,61 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 111 "main.l"
-{return IF;}
+#line 66 "g2.l"
+{ return PLUS; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 112 "main.l"
-{return ELSE;}
+#line 67 "g2.l"
+{ return MINUS; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 113 "main.l"
-{return INT;}
+#line 68 "g2.l"
+{ return TIMES; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 114 "main.l"
-{return RETURN;}
+#line 69 "g2.l"
+{ return OVER; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 115 "main.l"
-{return VOID;}
+#line 70 "g2.l"
+{ return LPAREN; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 116 "main.l"
-{return WHILE;}
+#line 71 "g2.l"
+{ return RPAREN; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 117 "main.l"
-{return EQ;}
+#line 72 "g2.l"
+{ return NUM; }
 	YY_BREAK
 case 8:
+/* rule 8 can match eol */
 YY_RULE_SETUP
-#line 118 "main.l"
-{return ASSIGN;}
+#line 73 "g2.l"
+{ lineno++; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 119 "main.l"
-{return LE;}
+#line 74 "g2.l"
+{ /* ignora espaços e tabulações */ }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 120 "main.l"
-{return LT;}
+#line 75 "g2.l"
+{ return ERROR; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 121 "main.l"
-{return GE;}
-	YY_BREAK
-case 12:
-YY_RULE_SETUP
-#line 122 "main.l"
-{return GT;}
-	YY_BREAK
-case 13:
-YY_RULE_SETUP
-#line 123 "main.l"
-{return NE;}
-	YY_BREAK
-case 14:
-YY_RULE_SETUP
-#line 124 "main.l"
-{return PLUS;}
-	YY_BREAK
-case 15:
-YY_RULE_SETUP
-#line 125 "main.l"
-{return MINUS;}
-	YY_BREAK
-case 16:
-YY_RULE_SETUP
-#line 126 "main.l"
-{return TIMES;}
-	YY_BREAK
-case 17:
-YY_RULE_SETUP
-#line 127 "main.l"
-{return LPAREN;}
-	YY_BREAK
-case 18:
-YY_RULE_SETUP
-#line 128 "main.l"
-{return RPAREN;}
-	YY_BREAK
-case 19:
-YY_RULE_SETUP
-#line 129 "main.l"
-{return SEMI;}
-	YY_BREAK
-case 20:
-YY_RULE_SETUP
-#line 130 "main.l"
-{return COMMA;}
-	YY_BREAK
-case 21:
-YY_RULE_SETUP
-#line 131 "main.l"
-{return LBRACK;}
-	YY_BREAK
-case 22:
-YY_RULE_SETUP
-#line 132 "main.l"
-{return RBRACK;}
-	YY_BREAK
-case 23:
-YY_RULE_SETUP
-#line 133 "main.l"
-{return NUM;}
-	YY_BREAK
-case 24:
-YY_RULE_SETUP
-#line 134 "main.l"
-{return ID;}
-	YY_BREAK
-case 25:
-/* rule 25 can match eol */
-YY_RULE_SETUP
-#line 135 "main.l"
-{lineno++;}
-	YY_BREAK
-case 26:
-YY_RULE_SETUP
-#line 136 "main.l"
-{/* skip whitespace */}
-	YY_BREAK
-case 27:
-YY_RULE_SETUP
-#line 137 "main.l"
-{
-                    char c;
-                    while (1) {
-                        c = input();
-                        if (c == 0 || c == EOF) break;
-                        if (c == '\n') lineno++;
-                        if (c == '*') {
-                            while ((c = input()) == '*');
-                            if (c == '/') break;
-                            if (c == '\n') lineno++;
-                            if (c == 0 || c == EOF) break;
-                        }
-                    }
-                }
-	YY_BREAK
-case 28:
-YY_RULE_SETUP
-#line 151 "main.l"
-{return OVER;}
-	YY_BREAK
-case 29:
-YY_RULE_SETUP
-#line 152 "main.l"
-{return LBRACE;}
-	YY_BREAK
-case 30:
-YY_RULE_SETUP
-#line 153 "main.l"
-{return RBRACE;}
-	YY_BREAK
-case 31:
-YY_RULE_SETUP
-#line 154 "main.l"
-{return ERROR;}
-	YY_BREAK
-case 32:
-YY_RULE_SETUP
-#line 156 "main.l"
+#line 77 "g2.l"
 ECHO;
 	YY_BREAK
-#line 1029 "lex.yy.c"
+#line 838 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1323,7 +1132,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 57 )
+			if ( yy_current_state >= 17 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1351,11 +1160,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 57 )
+		if ( yy_current_state >= 17 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 56);
+	yy_is_jam = (yy_current_state == 16);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -2031,142 +1840,158 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 156 "main.l"
+#line 77 "g2.l"
 
+
+/* ==================================================== */
+/* 1. IMPLEMENTAÇÃO DO ANALISADOR LÉXICO (getToken)     */
+/* ==================================================== */
 
 TokenType getToken(void)
-{ static int firstTime = TRUE;
-  TokenType currentToken;
-  if (firstTime)
-  { firstTime = FALSE;
-    lineno++;
-    yyin = source;
-    yyout = target;
-  }
-  currentToken = yylex();
+{
+    static int firstTime = TRUE;
+    TokenType token;
 
-  if (currentToken == 0) {
-    currentToken = ENDFILE;
-  }
-  strncpy(tokenString,yytext,MAXTOKENLEN);
-  if (TraceScan) {
-   // fprintf(target,"\t%d: ",lineno);
-    printToken(currentToken,tokenString);
-  }
-  // Força a gravação imediata no arquivo a cada token encontrado:
-    // Força a gravação imediata no arquivo a cada token encontrado:
-  if (target) fflush(target);
+    if (firstTime)
+    {
+        firstTime = FALSE;
+        lineno++;
+        yyin = source;
+        yyout = target;
+    }
 
-  if (currentToken == ERROR)
-  {
-    fprintf(stderr, "ERRO LEXICO: simbolo invalido \"%s\" na linha %d\n",
-            tokenString, lineno);
-    fclose(source);
-    fclose(target);
+    token = yylex();
+
+    if (token == 0) {
+        token = ENDFILE;
+    }
+
+    strncpy(tokenString, yytext, MAXTOKENLEN);
+
+    if (TraceScan) {
+        printToken(token, tokenString);
+    }
+
+    if (token == ERROR)
+    {
+        fprintf(stderr, "ERRO LÉXICO: símbolo inválido \"%s\" na linha %d\n", tokenString, lineno);
+        exit(1);
+    }
+
+    return token;
+}
+
+void printToken(TokenType token, const char* str)
+{
+    switch (token)
+    {
+        case PLUS:   printf(" + "); break;
+        case MINUS:  printf(" - "); break;
+        case TIMES:  printf(" * "); break;
+        case OVER:   printf(" / "); break;
+        case LPAREN: printf(" ( "); break;
+        case RPAREN: printf(" ) "); break;
+        case NUM:    printf("NUM(%s) ", str); break;
+        case ENDFILE:printf("EOF\n"); break;
+        default:     printf("ERROR "); break;
+    }
+}
+
+/* ==================================================== */
+/* 2. IMPLEMENTAÇÃO DO PARSER DESCENDENTE RECURSIVO    */
+/* ==================================================== */
+
+void syntaxError(const char *message)
+{
+    fprintf(stderr, "ERRO SINTÁTICO: %s no token '%s' (linha %d)\n", message, tokenString, lineno);
     exit(1);
-  }
-
-  return currentToken;
 }
 
-/****************************************************/
-/* File: util.c                                     */
-/* Utility function implementation                  */
-/* for the C-- compiler                            */
-/****************************************************/
-
-/* Procedure printToken prints a token 
- * and its lexeme to the listing file
- */
-void printToken( TokenType token, const char* tokenString )
-{ switch (token)
-  { case IF:
-    case ELSE:
-    case INT:
-    case RETURN:
-    case VOID:
-    case WHILE:
-     fprintf(target,
-         "reserved word %s\n",tokenString);
-      break;
-    case EQ: fprintf(target,"EQ ==\n"); break;
-    case ASSIGN: fprintf(target, "ASSIGN =\n"); break;
-    case LT: fprintf(target,"LT <\n"); break;
-    case LE: fprintf(target," LE <=\n"); break;
-    case GE: fprintf(target," GE >=n"); break;
-    case GT: fprintf(target,"GT >\n"); break;
-    case NE: fprintf(target,"NE !=\n"); break;
-    case PLUS: fprintf(target,"PLUS +\n"); break;
-    case MINUS: fprintf(target,"MINUS -\n"); break;
-    case TIMES: fprintf(target,"TIMES *\n"); break;
-    case LPAREN: fprintf(target,"LPAREN (\n"); break;
-    case RPAREN: fprintf(target,"RPAREN )\n"); break;
-    case SEMI: fprintf(target," SEMI ;\n"); break;
-    case COMMA: fprintf(target,"COMMA ,\n"); break;
-    case LBRACK: fprintf(target,"LBRACK [\n"); break;
-    case RBRACK: fprintf(target,"RBRACK ]\n"); break;
-    case ENDFILE: fprintf(target,"EOF\n"); break;
-    case NUM:
-      fprintf(target,
-          "NUM %s\n",tokenString);
-      break;
-    case ID:
-      fprintf(target,
-          "ID %s\n",tokenString);
-      break;
-    case OVER: fprintf(target,"OVER/\n"); break;
-    case LBRACE: fprintf(target," LBRACE {\n"); break;
-    case RBRACE: fprintf(target," RBRACE }\n"); break;
-    case ERROR:
-    fprintf(target,
-        "ERROR: simbolo invalido \"%s\" na linha %d\n", tokenString, lineno);
-    break;
-    default: /* should never happen */
-      fprintf(target,"Unknown token: %d\n",token);
-  }
+void match(TokenType expected)
+{
+    if (currentToken == expected) {
+        currentToken = getToken(); /* Avança para o próximo token */
+    } else {
+        syntaxError("Token inesperado");
+    }
 }
 
-/****************************************************/
-/* main (antigo main.c)                             */
-/****************************************************/
+/* fator -> ( exp ) | NUM */
+void fator(void)
+{
+    if (currentToken == LPAREN) {
+        match(LPAREN);
+        exp_syntax();
+        match(RPAREN);
+    } else if (currentToken == NUM) {
+        match(NUM);
+    } else {
+        syntaxError("Esperado '(' ou um número");
+    }
+}
+
+/* termo -> fator { (* | /) fator } */
+void termo(void)
+{
+    fator();
+    while (currentToken == TIMES || currentToken == OVER) {
+        if (currentToken == TIMES) {
+            match(TIMES);
+            fator();
+        } else if (currentToken == OVER) {
+            match(OVER);
+            fator();
+        }
+    }
+}
+
+/* exp -> termo { (+ | -) termo } */
+void exp_syntax(void)
+{
+    termo();
+    while (currentToken == PLUS || currentToken == MINUS) {
+        if (currentToken == PLUS) {
+            match(PLUS);
+            termo();
+        } else if (currentToken == MINUS) {
+            match(MINUS);
+            termo();
+        }
+    }
+}
+
+/* ==================================================== */
+/* 3. FUNÇÃO PRINCIPAL (MAIN)                           */
+/* ==================================================== */
 
 int main(int argc, char *argv[])
 {
-    char pgm[120];
-
     if (argc != 2)
     {
-        fprintf(stderr, "Uso: %s <arquivo de entrada>\n", argv[0]);
+        fprintf(stderr, "Uso: %s <arquivo_de_entrada>\n", argv[0]);
         return 1;
     }
 
-    strcpy(pgm, argv[1]);
-
-    if (strchr(pgm, '.') == NULL)
-    {
-        strcat(pgm, ".c--");
-    }
-
-    source = fopen(pgm, "r");
-
+    source = fopen(argv[1], "r");
     if (source == NULL)
     {
-        fprintf(stderr, "Arquivo %s não encontrado.\n", pgm);
-        exit(1);
+        fprintf(stderr, "Erro ao abrir o arquivo %s\n", argv[1]);
+        return 1;
     }
 
-    //target = stdout;
-    target = fopen("saida.txt", "w");
-    if (target == NULL)
-    {
-        fprintf(stderr, "Arquivo saida.txt não pode ser criado.\n");
-        exit(1);
-    }
+    /* Carrega o primeiro token para iniciar (lookahead) */
+    currentToken = getToken();
 
-    while (getToken() != ENDFILE);
+    /* Chama a regra inicial da gramática */
+    exp_syntax();
+
+    /* Verifica se chegou ao fim da entrada sem erros */
+    if (currentToken == ENDFILE) {
+        printf("\n>>> Análise Léxica e Sintática concluídas com SUCESSO! <<<\n");
+    } else {
+        syntaxError("Símbolo extra após o fim da expressão");
+    }
 
     fclose(source);
-    fclose(target); 
-
     return 0;
 }

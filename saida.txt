@@ -1,3 +1,0 @@
-reserved word int
-ID v
-ERROR: simbolo invalido "@" na linha 4
