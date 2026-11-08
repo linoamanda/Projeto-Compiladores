@@ -9,8 +9,10 @@
 #include "globals.h"
 #include "util.h"
 #include "scanner.h"
+#include "parser.tab.h"
 /* lexeme of identifier or reserved word */
 char tokenString[MAXTOKENLEN+1];
+
 %}
 
 digit       [0-9]
@@ -68,36 +70,26 @@ whitespace  [ \t]+
 .                {return ERROR;}
 
 %%
+int getToken(void)
+{
+    int currentToken;
 
-TokenType getToken(void)
-{ static int firstTime = TRUE;
-  TokenType currentToken;
-  if (firstTime)
-  { firstTime = FALSE;
-    lineno++;
-    yyin = source;
-    yyout = target;
-  }
-  currentToken = yylex();
+    do {
+        currentToken = yylex();
 
-  if (currentToken == 0) {
-    currentToken = ENDFILE;
-  }
-  strncpy(tokenString,yytext,MAXTOKENLEN);
-  if (TraceScan) {
-   // fprintf(target,"\t%d: ",lineno);
-    printToken(currentToken,tokenString);
-  }
-  // Força a gravação imediata no arquivo a cada token encontrado:
-    // Força a gravação imediata no arquivo a cada token encontrado:
-  if (target) fflush(target);
+        strncpy(tokenString, yytext, MAXTOKENLEN);
+        tokenString[MAXTOKENLEN] = '\0';
 
-  if (currentToken == ERROR)
-  {
-    fprintf(stderr, "ERRO LEXICO: simbolo invalido \"%s\" na linha %d\n",
-            tokenString, lineno);
-   
-  }
+        if (TraceScan && target) {
+            printToken(currentToken, tokenString);
+            fflush(target);
+        }
 
-  return currentToken;
+        if (currentToken == ERROR)
+            fprintf(stderr, "ERRO LEXICO: simbolo invalido \"%s\" na linha %d\n",
+                    tokenString, lineno);
+
+    } while (currentToken == ERROR);
+
+    return currentToken;
 }

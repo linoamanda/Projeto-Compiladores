@@ -1,6 +1,6 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-void printToken(TokenType, const char *);
+void printToken(int, const char *);
 
 #endif

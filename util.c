@@ -6,11 +6,12 @@
 
 #include "globals.h"
 #include "util.h"
+#include "parser.tab.h"
 
 /* Procedure printToken prints a token 
  * and its lexeme to the listing file
  */
-void printToken( TokenType token, const char* tokenString )
+void printToken( int token, const char* tokenString )
 { switch (token)
   { case IF:
     case ELSE:
@@ -37,7 +38,7 @@ void printToken( TokenType token, const char* tokenString )
     case COMMA: fprintf(target,","); break;
     case LBRACK: fprintf(target," [ "); break;
     case RBRACK: fprintf(target," ] "); break;
-    case ENDFILE: fprintf(target,"EOF\n"); break;
+    case 0: fprintf(target,"EOF\n"); break;
     case NUM:
       fprintf(target,
           "NUM %s ",tokenString);

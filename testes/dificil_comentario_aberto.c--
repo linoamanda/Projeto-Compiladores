@@ -1,0 +1,6 @@
+void main(void)
+{
+    int a;
+    /* comentario que nunca fecha
+    a = 1;
+}

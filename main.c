@@ -1,11 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "globals.h"
 #include "scanner.h"
+#include "parser.tab.h"
 
 FILE *source;
 FILE *target;
+extern FILE *yyin;
+extern int yyparse(void);
 
-int lineno = 0;
+int lineno = 1;
 int TraceScan = 1;
+
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +33,7 @@ int main(int argc, char *argv[])
     }
 
     source = fopen(pgm, "r");
+    yyin = source;
 
     if (source == NULL)
     {
@@ -32,15 +41,17 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    //target = stdout;
     target = fopen("saida.txt", "w");
     if (target == NULL)
     {
         fprintf(stderr, "Arquivo saida.txt não pode ser criado.\n");
         exit(1);
     }
-
-    while (getToken() != ENDFILE);
+    
+    if (yyparse() == 0)
+        fprintf(stderr, "Parsing sintatico concluido com sucesso.\n");
+    else
+        fprintf(stderr, "Falha no parsing sintatico.\n");
 
     fclose(source);
     fclose(target); 

@@ -15,7 +15,7 @@
 
 
 
-typedef enum
+/* typedef enum
 {
     ENDFILE = 0,
     ERROR   = 1,
@@ -50,7 +50,7 @@ typedef enum
     LBRACE  = 27,
     RBRACE  = 28
 
-} TokenType;
+} TokenType; */
 
 extern FILE *source;
 extern FILE *target;
