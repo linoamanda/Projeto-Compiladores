@@ -4,6 +4,7 @@
 
 #include "globals.h"
 #include "scanner.h"
+#include "util.h"
 #include "parser.tab.h"
 
 FILE *source;
@@ -11,6 +12,7 @@ FILE *target;
 extern FILE *yyin;
 extern int yyparse(void);
 
+TreeNode *savedTree = NULL;
 int lineno = 1;
 int TraceScan = 1;
 
@@ -47,14 +49,18 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Arquivo saida.txt não pode ser criado.\n");
         exit(1);
     }
-    
+
     if (yyparse() == 0)
-        fprintf(stderr, "Parsing sintatico concluido com sucesso.\n");
+    {
+        fprintf(stderr, "Parsing sintatico concluido com sucesso.\n\n");
+        printf("Arvore sintatica:\n\n");
+        printTree(savedTree, 0);
+    }
     else
         fprintf(stderr, "Falha no parsing sintatico.\n");
 
     fclose(source);
-    fclose(target); 
+    fclose(target);
 
     return 0;
 }

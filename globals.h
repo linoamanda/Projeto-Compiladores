@@ -13,44 +13,35 @@
 #define TRUE 1
 #endif
 
+#define MAXCHILDREN 3
 
+/* Familia do no
+   StmtK: Statement (comando)
+   ExpK:  Expression (expressao)
+   DeclK: Declaration (declaracao) */
+typedef enum { StmtK, ExpK, DeclK } NodeKind;
 
-/* typedef enum
+/* Tipo especifico dentro de cada familia */
+typedef enum { IfK, WhileK, ReturnK, CompoundK } StmtKind;                /* comandos    */
+typedef enum { OpK, ConstK, IdK, SubscriptK, AssignK, CallK } ExpKind;    /* expressoes  */
+typedef enum { VarK, ArrayVarK, FunK, ParamK, ArrayParamK } DeclKind;     /* declaracoes */
+
+/* tipo declarado: int ou void */
+typedef enum { Void, Integer } ExpType;
+
+typedef struct treeNode
 {
-    ENDFILE = 0,
-    ERROR   = 1,
+    struct treeNode *child[MAXCHILDREN];  /* partes fixas do no          */
+    struct treeNode *sibling;             /* proximo elemento da lista   */
+    NodeKind nodekind;
+    union { StmtKind stmt; ExpKind exp; DeclKind decl; } kind;
+    int op;          /* OpK: token do operador (PLUS, LT, ...)           */
+    int val;         /* ConstK: valor; ArrayVarK: tamanho                */
+    char *name;      /* IdK, SubscriptK, CallK e declaracoes: nome       */
+    ExpType type;    /* declaracoes: int ou void                         */
+} TreeNode;
 
-    IF      = 2,
-    ELSE    = 3,
-    INT     = 4,
-    RETURN  = 5,
-    VOID    = 6,
-    WHILE   = 7,
-
-    ID      = 8,
-    NUM     = 9,
-
-    ASSIGN  = 10,
-    EQ      = 11,
-    LE      = 12,
-    GE      = 13,
-    GT      = 14,
-    NE      = 15,
-    LT      = 16,
-    PLUS    = 17,
-    MINUS   = 18,
-    TIMES   = 19,
-    OVER    = 20,
-    LPAREN  = 21,
-    RPAREN  = 22,
-    SEMI    = 23,
-    COMMA   = 24,
-    LBRACK  = 25,
-    RBRACK  = 26,
-    LBRACE  = 27,
-    RBRACE  = 28
-
-} TokenType; */
+extern TreeNode *savedTree;   /* raiz da arvore, preenchida pelo parser */
 
 extern FILE *source;
 extern FILE *target;

@@ -1,4 +1,7 @@
  void ID main  (
  void  )
   {
- int ID a ; EOF
+ int ID a ; ID a = NUM 1 ERROR: simbolo invalido "@" na linha 4
+; ID a = ID a  + ERROR: simbolo invalido "#" na linha 5
+NUM 2 ;   }
+EOF

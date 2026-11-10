@@ -90,6 +90,10 @@ int getToken(void)
                     tokenString, lineno);
 
     } while (currentToken == ERROR);
+    
+    /* entrega o lexema ao bison */
+    if (currentToken == ID || currentToken == NUM)
+        yylval.str = strdup(yytext);
 
     return currentToken;
 }

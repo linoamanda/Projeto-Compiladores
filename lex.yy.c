@@ -1,5 +1,5 @@
 
-#line 2 "lex.yy.c"
+#line 3 "lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -490,8 +490,8 @@ char *yytext;
 /* lexeme of identifier or reserved word */
 char tokenString[MAXTOKENLEN+1];
 
-#line 493 "lex.yy.c"
 #line 494 "lex.yy.c"
+#line 495 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -502,7 +502,7 @@ char tokenString[MAXTOKENLEN+1];
  */
 #include <unistd.h>
 #endif
-    
+
 #ifndef YY_EXTRA_TYPE
 #define YY_EXTRA_TYPE void *
 #endif
@@ -711,7 +711,7 @@ YY_DECL
 #line 25 "scanner.l"
 
 
-#line 714 "lex.yy.c"
+#line 715 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -942,7 +942,7 @@ YY_RULE_SETUP
 #line 72 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 945 "lex.yy.c"
+#line 946 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1969,6 +1969,10 @@ int getToken(void)
                     tokenString, lineno);
 
     } while (currentToken == ERROR);
+    
+    /* entrega o lexema ao bison */
+    if (currentToken == ID || currentToken == NUM)
+        yylval.str = strdup(yytext);
 
     return currentToken;
 }
