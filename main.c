@@ -5,6 +5,7 @@
 #include "globals.h"
 #include "scanner.h"
 #include "util.h"
+#include "symtab.h"
 #include "parser.tab.h"
 
 FILE *source;
@@ -15,7 +16,6 @@ extern int yyparse(void);
 TreeNode *savedTree = NULL;
 int lineno = 1;
 int TraceScan = 1;
-
 
 int main(int argc, char *argv[])
 {
@@ -35,13 +35,12 @@ int main(int argc, char *argv[])
     }
 
     source = fopen(pgm, "r");
-    yyin = source;
-
     if (source == NULL)
     {
         fprintf(stderr, "Arquivo %s não encontrado.\n", pgm);
         exit(1);
     }
+    yyin = source;
 
     target = fopen("saida.txt", "w");
     if (target == NULL)
@@ -49,6 +48,10 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Arquivo saida.txt não pode ser criado.\n");
         exit(1);
     }
+
+    /* funcoes predefinidas do C-- (opcional) */
+    st_insert("input",  0, TIPO_INT,  ID_FUNC, "global");
+    st_insert("output", 0, TIPO_VOID, ID_FUNC, "global");
 
     if (yyparse() == 0)
     {
@@ -58,6 +61,19 @@ int main(int argc, char *argv[])
     }
     else
         fprintf(stderr, "Falha no parsing sintatico.\n");
+
+    /* grava a tabela de simbolos em arquivo proprio */
+    FILE *tab = fopen("tabela_simbolos.txt", "w");
+    if (tab == NULL)
+    {
+        fprintf(stderr, "Arquivo tabela_simbolos.txt não pode ser criado.\n");
+    }
+    else
+    {
+        printSymTab(tab);
+        fclose(tab);
+        fprintf(stderr, "Tabela de simbolos gravada em tabela_simbolos.txt\n");
+    }
 
     fclose(source);
     fclose(target);

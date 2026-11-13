@@ -97,7 +97,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 21 "parser.y"
+#line 22 "parser.y"
 
     int       ival;     /* tipo e operadores   */
     char     *str;      /* lexema de ID e NUM  */

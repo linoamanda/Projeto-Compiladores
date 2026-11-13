@@ -1,0 +1,21 @@
+Nome         Escopo       Tipo   Id     Linhas
+------------------------------------------------
+input        global       int    func   0 39
+output       global       void   func   0 45
+vet          global       int    vetor  4 39 42 45
+minloc       global       int    func   6 26
+a            minloc       int    param  6 9 12 13
+low          minloc       int    param  6 8 9 10
+high         minloc       int    param  6 11
+i            minloc       int    var    7 10 11 12 13 14 16
+x            minloc       int    var    7 9 12 13
+k            minloc       int    var    7 8 14 18
+sort         global       void   func   21 42
+a            sort         int    param  21 26 27 28 29
+low          sort         int    param  21 23
+high         sort         int    param  21 24 26
+i            sort         int    var    22 23 24 26 28 29 30
+k            sort         int    var    22 26 27 28
+t            sort         int    var    25 27 29
+main         global       void   func   34
+i            main         int    var    36 37 38 39 40 43 44 45 46

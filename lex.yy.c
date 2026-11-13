@@ -1,5 +1,5 @@
 
-#line 3 "lex.yy.c"
+#line 2 "lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -365,18 +365,18 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[57] =
     {   0,
-        0,    0,   33,   31,   26,   25,   31,   17,   18,   16,
-       14,   20,   15,   28,   23,   19,   10,    8,   12,   24,
-       21,   22,   24,   24,   24,   24,   24,   29,   30,   26,
-       13,   27,   23,    9,    7,   11,   24,   24,    1,   24,
-       24,   24,   24,   24,    3,   24,   24,   24,    2,   24,
-        5,   24,   24,    6,    4,    0
+        0,    0,   33,   31,   29,   28,   31,   18,   19,   16,
+       14,   21,   15,   17,   26,   20,   10,    8,   12,   27,
+       22,   23,   27,   27,   27,   27,   27,   24,   25,   29,
+       13,   30,   26,    9,    7,   11,   27,   27,    1,   27,
+       27,   27,   27,   27,    3,   27,   27,   27,    2,   27,
+        5,   27,   27,    6,    4,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    2,    4,    1,    1,    1,    1,    1,    1,    5,
         6,    7,    8,    9,   10,    1,   11,   12,   12,   12,
@@ -479,19 +479,32 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "scanner.l"
 /****************************************************/
-/* File: scanner.lex                                */
+/* File: scanner.l                                  */
 /* Lex specification for C--                        */
+/* Tabela de simbolos montada no lexico             */
 /****************************************************/
 #line 9 "scanner.l"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "globals.h"
 #include "util.h"
+#include "symtab.h"
 #include "scanner.h"
 #include "parser.tab.h"
+
 /* lexeme of identifier or reserved word */
 char tokenString[MAXTOKENLEN+1];
 
-#line 494 "lex.yy.c"
-#line 495 "lex.yy.c"
+/* ---- estado usado para montar a tabela de simbolos ---- */
+static int  prev1 = -1, prev2 = -1;       /* ultimos dois tokens        */
+static char prevLex[MAXTOKENLEN+1];       /* lexema do ultimo ID        */
+static int  prevLine = 0;                 /* linha do ultimo ID         */
+static char curScope[MAXTOKENLEN+1] = "global";
+static int  depth    = 0;                 /* nivel de chaves { }        */
+static int  inParams = 0;                 /* dentro de ( ) da funcao?   */
+#line 506 "lex.yy.c"
+#line 507 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -708,10 +721,10 @@ YY_DECL
 		}
 
 	{
-#line 25 "scanner.l"
+#line 37 "scanner.l"
 
 
-#line 715 "lex.yy.c"
+#line 727 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -770,179 +783,179 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 27 "scanner.l"
+#line 39 "scanner.l"
 {return IF;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 28 "scanner.l"
+#line 40 "scanner.l"
 {return ELSE;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 29 "scanner.l"
+#line 41 "scanner.l"
 {return INT;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 30 "scanner.l"
+#line 42 "scanner.l"
 {return RETURN;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 31 "scanner.l"
+#line 43 "scanner.l"
 {return VOID;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 32 "scanner.l"
+#line 44 "scanner.l"
 {return WHILE;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 33 "scanner.l"
+#line 45 "scanner.l"
 {return EQ;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 34 "scanner.l"
+#line 46 "scanner.l"
 {return ASSIGN;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 35 "scanner.l"
+#line 47 "scanner.l"
 {return LE;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 36 "scanner.l"
+#line 48 "scanner.l"
 {return LT;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 37 "scanner.l"
+#line 49 "scanner.l"
 {return GE;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 38 "scanner.l"
+#line 50 "scanner.l"
 {return GT;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 39 "scanner.l"
+#line 51 "scanner.l"
 {return NE;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 40 "scanner.l"
+#line 52 "scanner.l"
 {return PLUS;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 41 "scanner.l"
+#line 53 "scanner.l"
 {return MINUS;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 42 "scanner.l"
+#line 54 "scanner.l"
 {return TIMES;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 43 "scanner.l"
-{return LPAREN;}
+#line 55 "scanner.l"
+{return OVER;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 44 "scanner.l"
-{return RPAREN;}
+#line 56 "scanner.l"
+{return LPAREN;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 45 "scanner.l"
-{return SEMI;}
+#line 57 "scanner.l"
+{return RPAREN;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 46 "scanner.l"
-{return COMMA;}
+#line 58 "scanner.l"
+{return SEMI;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 47 "scanner.l"
-{return LBRACK;}
+#line 59 "scanner.l"
+{return COMMA;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 48 "scanner.l"
-{return RBRACK;}
+#line 60 "scanner.l"
+{return LBRACK;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 49 "scanner.l"
-{return NUM;}
+#line 61 "scanner.l"
+{return RBRACK;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 50 "scanner.l"
-{return ID;}
+#line 62 "scanner.l"
+{return LBRACE;}
 	YY_BREAK
 case 25:
-/* rule 25 can match eol */
 YY_RULE_SETUP
-#line 51 "scanner.l"
-{lineno++;}
+#line 63 "scanner.l"
+{return RBRACE;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 52 "scanner.l"
-{/* skip whitespace */}
+#line 64 "scanner.l"
+{return NUM;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 53 "scanner.l"
+#line 65 "scanner.l"
+{return ID;}
+	YY_BREAK
+case 28:
+/* rule 28 can match eol */
+YY_RULE_SETUP
+#line 66 "scanner.l"
+{lineno++;}
+	YY_BREAK
+case 29:
+YY_RULE_SETUP
+#line 67 "scanner.l"
+{/* skip whitespace */}
+	YY_BREAK
+case 30:
+YY_RULE_SETUP
+#line 69 "scanner.l"
 {
-                    char c;
+                    int c;
                     while (1) {
                         c = input();
                         if (c == 0 || c == EOF) break;
                         if (c == '\n') lineno++;
                         if (c == '*') {
                             while ((c = input()) == '*');
-                            if (c == '/') break;
                             if (c == '\n') lineno++;
+                            if (c == '/') break;
                             if (c == 0 || c == EOF) break;
                         }
                     }
                 }
 	YY_BREAK
-case 28:
-YY_RULE_SETUP
-#line 67 "scanner.l"
-{return OVER;}
-	YY_BREAK
-case 29:
-YY_RULE_SETUP
-#line 68 "scanner.l"
-{return LBRACE;}
-	YY_BREAK
-case 30:
-YY_RULE_SETUP
-#line 69 "scanner.l"
-{return RBRACE;}
-	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 70 "scanner.l"
+#line 84 "scanner.l"
 {return ERROR;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 72 "scanner.l"
+#line 86 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 946 "lex.yy.c"
+#line 958 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1947,32 +1960,71 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 72 "scanner.l"
+#line 86 "scanner.l"
+
 
 int getToken(void)
 {
-    int currentToken;
+    int tok;
 
+    /* le o proximo token valido (descarta simbolos invalidos) */
     do {
-        currentToken = yylex();
+        tok = yylex();
 
         strncpy(tokenString, yytext, MAXTOKENLEN);
         tokenString[MAXTOKENLEN] = '\0';
 
-        if (TraceScan && target) {
-            printToken(currentToken, tokenString);
-            fflush(target);
-        }
-
-        if (currentToken == ERROR)
+        if (tok == ERROR)
             fprintf(stderr, "ERRO LEXICO: simbolo invalido \"%s\" na linha %d\n",
                     tokenString, lineno);
+    } while (tok == ERROR);
 
-    } while (currentToken == ERROR);
-    
+    if (TraceScan && target) {
+        printToken(tok, tokenString);
+        fflush(target);
+    }
+
+    /* declaracao: (int|void) ID <token decisivo> */
+    if ((prev2 == INT || prev2 == VOID) && prev1 == ID) {
+        TipoDado t = (prev2 == INT) ? TIPO_INT : TIPO_VOID;
+
+        if (tok == LPAREN) {                          /* funcao */
+            st_insert(prevLex, prevLine, t, ID_FUNC, "global");
+            strcpy(curScope, prevLex);
+            inParams = 1;
+        }
+        else if (inParams &&
+                 (tok == COMMA || tok == RPAREN || tok == LBRACK)) {
+            st_insert(prevLex, prevLine, t, ID_PARAM, curScope);
+        }
+        else if (!inParams && tok == SEMI) {          /* variavel */
+            st_insert(prevLex, prevLine, t, ID_VAR, curScope);
+        }
+        else if (!inParams && tok == LBRACK) {        /* vetor */
+            st_insert(prevLex, prevLine, t, ID_VETOR, curScope);
+        }
+    }
+
+    /* ID: guarda lexema; se nao vem depois de tipo, e um uso */
+    if (tok == ID) {
+        if (prev1 != INT && prev1 != VOID)
+            st_addRef(tokenString, lineno, curScope);
+        strcpy(prevLex, tokenString);
+        prevLine = lineno;
+    }
+
+    /* controle de escopo */
+    if (tok == RPAREN) inParams = 0;
+    if (tok == LBRACE) depth++;
+    if (tok == RBRACE && --depth == 0)
+        strcpy(curScope, "global");
+
+    prev2 = prev1;
+    prev1 = tok;
+
     /* entrega o lexema ao bison */
-    if (currentToken == ID || currentToken == NUM)
+    if (tok == ID || tok == NUM)
         yylval.str = strdup(yytext);
 
-    return currentToken;
+    return tok;
 }

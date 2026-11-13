@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "globals.h"
 #include "util.h"
+#include "symtab.h"
 
 #define yylex getToken
 int getToken(void);

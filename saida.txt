@@ -1,7 +1,41 @@
+ int ID vet  [ NUM 10  ] ;  int ID minloc  (
+ int ID a  [  ] , int ID low , int ID high  )
+  {
+ int ID i ;  int ID x ;  int ID k ; ID k = ID low ; ID x = ID a  [ ID low  ] ; ID i = ID low  + NUM 1 ;  while  (
+ID i  < ID high  )
+  {
+ if  (
+ID a  [ ID i  ]  < ID x  )
+  {
+ID x = ID a  [ ID i  ] ; ID k = ID i ;   }
+ID i = ID i  + NUM 1 ;   }
+ return ID k ;   }
+ void ID sort  (
+ int ID a  [  ] , int ID low , int ID high  )
+  {
+ int ID i ;  int ID k ; ID i = ID low ;  while  (
+ID i  < ID high  - NUM 1  )
+  {
+ int ID t ; ID k = ID minloc  (
+ID a ,ID i ,ID high  )
+; ID t = ID a  [ ID k  ] ; ID a  [ ID k  ] = ID a  [ ID i  ] ; ID a  [ ID i  ] = ID t ; ID i = ID i  + NUM 1 ;   }
+  }
  void ID main  (
  void  )
   {
- int ID a ; ID a = NUM 1 ERROR: simbolo invalido "@" na linha 4
-; ID a = ID a  + ERROR: simbolo invalido "#" na linha 5
-NUM 2 ;   }
+ int ID i ; ID i = NUM 0 ;  while  (
+ID i  < NUM 10  )
+  {
+ID vet  [ ID i  ] = ID input  (
+ )
+; ID i = ID i  + NUM 1 ;   }
+ID sort  (
+ID vet ,NUM 0 ,NUM 10  )
+; ID i = NUM 0 ;  while  (
+ID i  < NUM 10  )
+  {
+ID output  (
+ID vet  [ ID i  ]  )
+; ID i = ID i  + NUM 1 ;   }
+  }
 EOF
