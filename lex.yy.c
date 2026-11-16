@@ -1,5 +1,5 @@
 
-#line 2 "lex.yy.c"
+#line 3 "lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -503,8 +503,8 @@ static int  prevLine = 0;                 /* linha do ultimo ID         */
 static char curScope[MAXTOKENLEN+1] = "global";
 static int  depth    = 0;                 /* nivel de chaves { }        */
 static int  inParams = 0;                 /* dentro de ( ) da funcao?   */
-#line 506 "lex.yy.c"
 #line 507 "lex.yy.c"
+#line 508 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -724,7 +724,7 @@ YY_DECL
 #line 37 "scanner.l"
 
 
-#line 727 "lex.yy.c"
+#line 728 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -955,7 +955,7 @@ YY_RULE_SETUP
 #line 86 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 958 "lex.yy.c"
+#line 959 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

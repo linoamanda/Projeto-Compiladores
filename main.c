@@ -53,14 +53,16 @@ int main(int argc, char *argv[])
     st_insert("input",  0, TIPO_INT,  ID_FUNC, "global");
     st_insert("output", 0, TIPO_VOID, ID_FUNC, "global");
 
-    if (yyparse() == 0)
+    int rc = yyparse();
+
+    if ( rc == 0)
     {
         fprintf(stderr, "Parsing sintatico concluido com sucesso.\n\n");
         printf("Arvore sintatica:\n\n");
         printTree(savedTree, 0);
     }
     else
-        fprintf(stderr, "Falha no parsing sintatico.\n");
+        fprintf(stderr, "Falha no parsing sintatico(tabela parcial).\n");
 
     /* grava a tabela de simbolos em arquivo proprio */
     FILE *tab = fopen("tabela_simbolos.txt", "w");
@@ -70,6 +72,8 @@ int main(int argc, char *argv[])
     }
     else
     {
+        if (rc != 0)
+        fprintf(tab, "/* AVISO: erro sintatico; tabela parcial */\n");
         printSymTab(tab);
         fclose(tab);
         fprintf(stderr, "Tabela de simbolos gravada em tabela_simbolos.txt\n");
