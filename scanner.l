@@ -25,6 +25,15 @@ static int  prevLine = 0;                 /* linha do ultimo ID         */
 static char curScope[MAXTOKENLEN+1] = "global";
 static int  depth    = 0;                 /* nivel de chaves { }        */
 static int  inParams = 0;                 /* dentro de ( ) da funcao?   */
+
+/* declara um simbolo e avisa se for declaracao invalida */
+static void declare(char *name, int line, TipoDado t, TipoId k, char *scope)
+{
+    if (!st_insert(name, line, t, k, scope))
+        fprintf(stderr,
+          "ERRO SEMANTICO: declaracao invalida de \"%s\" na linha %d (ja declarado)\n",
+          name, line);
+}
 %}
 
 digit       [0-9]
@@ -111,19 +120,19 @@ int getToken(void)
         TipoDado t = (prev2 == INT) ? TIPO_INT : TIPO_VOID;
 
         if (tok == LPAREN) {                          /* funcao */
-            st_insert(prevLex, prevLine, t, ID_FUNC, "global");
+            declare(prevLex, prevLine, t, ID_FUNC, "global");
             strcpy(curScope, prevLex);
             inParams = 1;
         }
         else if (inParams &&
                  (tok == COMMA || tok == RPAREN || tok == LBRACK)) {
-            st_insert(prevLex, prevLine, t, ID_PARAM, curScope);
+            declare(prevLex, prevLine, t, ID_PARAM, curScope);
         }
         else if (!inParams && tok == SEMI) {          /* variavel */
-            st_insert(prevLex, prevLine, t, ID_VAR, curScope);
+            declare(prevLex, prevLine, t, ID_VAR, curScope);
         }
         else if (!inParams && tok == LBRACK) {        /* vetor */
-            st_insert(prevLex, prevLine, t, ID_VETOR, curScope);
+            declare(prevLex, prevLine, t, ID_VETOR, curScope);
         }
     }
 

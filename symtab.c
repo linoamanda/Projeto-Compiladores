@@ -34,23 +34,30 @@ static void addLine(Symbol *s, int line)
         s->lines[s->nlines++] = line;
 }
 
-void st_insert(char *name, int lineno, TipoDado tipo, TipoId kind, char *scope)
+/* Retorna 1 se inseriu, 0 se for declaracao invalida */
+int st_insert(char *name, int lineno, TipoDado tipo, TipoId kind, char *scope)
 {
     Symbol *s = find(name, scope);
 
-    if (s == NULL) {
-        s = calloc(1, sizeof(Symbol));
-        s->name  = strdup(name);
-        s->scope = strdup(scope);
-        s->tipo  = tipo;
-        s->kind  = kind;
-        s->next  = NULL;
+    if (s != NULL)                       /* regra 4: ja declarado no escopo */
+        return 0;
 
-        if (tail) tail->next = s;
-        else      head = s;
-        tail = s;
+    if (kind != ID_FUNC) {               /* regra 7: nome ja e funcao */
+        Symbol *g = find(name, "global");
+        if (g != NULL && g->kind == ID_FUNC)
+            return 0;
     }
+
+    s = calloc(1, sizeof(Symbol));
+    s->name  = strdup(name);
+    s->scope = strdup(scope);
+    s->tipo  = tipo;
+    s->kind  = kind;
+
+    if (tail) tail->next = s; else head = s;
+    tail = s;
     addLine(s, lineno);
+    return 1;
 }
 
 void st_addRef(char *name, int lineno, char *scope)
@@ -60,6 +67,15 @@ void st_addRef(char *name, int lineno, char *scope)
         s = find(name, "global");         /* senao, global */
     if (s != NULL)
         addLine(s, lineno);
+}
+int st_lookup(char *name, char *scope, TipoDado *tipo, TipoId *kind)
+{
+    Symbol *s = find(name, scope);
+    if (s == NULL) s = find(name, "global");
+    if (s == NULL) return 0;
+    if (tipo) *tipo = s->tipo;
+    if (kind) *kind = s->kind;
+    return 1;
 }
 
 void printSymTab(FILE *f)

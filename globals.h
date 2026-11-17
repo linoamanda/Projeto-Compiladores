@@ -38,6 +38,7 @@ typedef struct treeNode
     int op;          /* OpK: token do operador (PLUS, LT, ...)           */
     int val;         /* ConstK: valor; ArrayVarK: tamanho                */
     char *name;      /* IdK, SubscriptK, CallK e declaracoes: nome       */
+    int lineno;
     ExpType type;    /* declaracoes: int ou void                         */
 } TreeNode;
 

@@ -8,7 +8,9 @@ typedef enum { ID_VAR, ID_VETOR, ID_FUNC, ID_PARAM } TipoId;
 
 /* Insere uma declaracao. Se o nome ja existe nesse escopo,
    apenas acrescenta a linha. */
-void st_insert(char *name, int lineno, TipoDado tipo, TipoId kind, char *scope);
+int st_insert(char *name, int lineno, TipoDado tipo, TipoId kind, char *scope);
+/* Procura no escopo e depois no global. Retorna 1 se achou. */
+int st_lookup(char *name, char *scope, TipoDado *tipo, TipoId *kind);
 
 /* Registra um uso do identificador: procura no escopo atual
    e, se nao achar, no escopo "global". */

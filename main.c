@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "analyze.h"
 #include "globals.h"
 #include "scanner.h"
 #include "util.h"
 #include "symtab.h"
 #include "parser.tab.h"
+
+
 
 FILE *source;
 FILE *target;
@@ -54,16 +56,6 @@ int main(int argc, char *argv[])
     st_insert("output", 0, TIPO_VOID, ID_FUNC, "global");
 
     int rc = yyparse();
-
-    if ( rc == 0)
-    {
-        fprintf(stderr, "Parsing sintatico concluido com sucesso.\n\n");
-        printf("Arvore sintatica:\n\n");
-        printTree(savedTree, 0);
-    }
-    else
-        fprintf(stderr, "Falha no parsing sintatico(tabela parcial).\n");
-
     /* grava a tabela de simbolos em arquivo proprio */
     FILE *tab = fopen("tabela_simbolos.txt", "w");
     if (tab == NULL)
@@ -73,14 +65,30 @@ int main(int argc, char *argv[])
     else
     {
         if (rc != 0)
+         while (getToken() != 0)
+             ;
         fprintf(tab, "/* AVISO: erro sintatico; tabela parcial */\n");
         printSymTab(tab);
-        fclose(tab);
+        //fclose(tab);
         fprintf(stderr, "Tabela de simbolos gravada em tabela_simbolos.txt\n");
+        fprintf(stderr, "Falha no parsing sintatico(tabela parcial).\n");
     }
+
+    if ( rc == 0)
+    {
+        fprintf(stderr, "Parsing sintatico concluido com sucesso.\n\n");
+        printf("Arvore sintatica:\n\n");
+        printTree(savedTree, 0);
+        typeCheck(savedTree);
+    }
+    /*else
+        fprintf(stderr, "Falha no parsing sintatico(tabela parcial).\n");
+*/
+    
 
     fclose(source);
     fclose(target);
+    fclose(tab);
 
     return 0;
 }

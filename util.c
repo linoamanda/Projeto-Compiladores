@@ -73,6 +73,7 @@ static TreeNode *newNode(NodeKind nk)
         exit(1);
     }
     t->nodekind = nk;
+    t->lineno   = lineno; 
     return t;
 }
 

@@ -1,11 +1,19 @@
- void ID vazio  (
- void  )
-  {
-  }
  void ID main  (
  void  )
   {
-; ID vazio  (
+ int ID i ; ID i = NUM 0 ;  while  (
+ID i  < NUM 10  )
+  {
+ID vet  [ ID i  ] = ID input  (
  )
-;   }
+; ID i = ID i  + NUM 1 ;   }
+ID sort  (
+ID vet ,NUM 0 ,NUM 10  )
+; ID i = NUM 0 ;  while  (
+ID i  < NUM 10  )
+  {
+ID output  (
+ID vet  [ ID i  ]  )
+; ID i = ID i  + NUM 1 ;   }
+  }
 EOF
