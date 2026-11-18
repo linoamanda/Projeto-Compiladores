@@ -1,19 +1,4 @@
  void ID main  (
  void  )
   {
- int ID i ; ID i = NUM 0 ;  while  (
-ID i  < NUM 10  )
-  {
-ID vet  [ ID i  ] = ID input  (
- )
-; ID i = ID i  + NUM 1 ;   }
-ID sort  (
-ID vet ,NUM 0 ,NUM 10  )
-; ID i = NUM 0 ;  while  (
-ID i  < NUM 10  )
-  {
-ID output  (
-ID vet  [ ID i  ]  )
-; ID i = ID i  + NUM 1 ;   }
-  }
-EOF
+ int ID i ; ID i = NUM 0 ERROR: simbolo invalido "#" na linha 7

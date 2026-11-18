@@ -1977,7 +1977,7 @@ int getToken(void)
     int tok;
 
     /* le o proximo token valido (descarta simbolos invalidos) */
-    do {
+    //do {
         tok = yylex();
 
         strncpy(tokenString, yytext, MAXTOKENLEN);
@@ -1986,7 +1986,7 @@ int getToken(void)
         if (tok == ERROR)
             fprintf(stderr, "ERRO LEXICO: simbolo invalido \"%s\" na linha %d\n",
                     tokenString, lineno);
-    } while (tok == ERROR);
+    //} while (tok == ERROR);
 
     if (TraceScan && target) {
         printToken(tok, tokenString);

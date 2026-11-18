@@ -1,7 +1,7 @@
 /* AVISO: erro sintatico; tabela parcial */
 Nome         Escopo       Tipo   Id     Linhas
 ------------------------------------------------
-input        global       int    func   0 9
-output       global       void   func   0 15
+input        global       int    func   0
+output       global       void   func   0
 main         global       void   func   3
-i            main         int    var    6 7 8 9 10 13 14 15 16
+i            main         int    var    6 7
